@@ -4,7 +4,7 @@ const Share = ({ id, sx, setOpen, menu }) => {
     const copyURL = () => {
         setOpen(true);
         if (menu) {
-            const url = 'http://localhost:3001/post/' + id;
+            const url = 'https://nusgossip.netlify.app/post/' + id;
             navigator.clipboard.writeText(url);
         } else {
             navigator.clipboard.writeText(window.location);
