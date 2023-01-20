@@ -58,8 +58,8 @@ const CommentForm = ({ text, id, setEditable }) => {
                         multiline
                         minRows={4}
                         maxRows={8}
-                        error={Boolean(errors?.title)}
-                        helperText={errors?.title ? "Required field" : ""}
+                        error={Boolean(errors?.comment)}
+                        helperText={errors?.comment ? "Required field" : ""}
                         {...field}
                     />
                 )}
