@@ -46,7 +46,7 @@ const PostsList = ({ url, setOpen }) => {
           dataLength={posts.length}
           next={fetchData}
           hasMore={hasMore}
-          loader={<h4>Loading...</h4>}
+          loader={<h4 style={{ textAlign: "center" }}>Loading...</h4>}
           endMessage={
             <p style={{ textAlign: "center" }}>
                 <b>No more threads to read</b>

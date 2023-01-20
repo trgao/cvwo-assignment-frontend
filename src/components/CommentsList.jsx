@@ -43,7 +43,7 @@ const CommentsList = ({ id }) => {
           dataLength={comments.length}
           next={fetchData}
           hasMore={hasMore}
-          loader={<h4>Loading...</h4>}
+          loader={<h4 style={{ textAlign: "center" }}>Loading...</h4>}
           endMessage={
             <p style={{ textAlign: "center" }}>
                 <b>No more comments to read</b>
