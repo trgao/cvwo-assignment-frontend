@@ -9,6 +9,7 @@ import { getLoggedIn } from '..';
 import { useState, useEffect } from 'react';
 import { useLocation, useParams, useNavigate, Link } from 'react-router-dom';
 import { Button, ToggleButton } from '@mui/material';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 import Copied from '../components/Copied';
@@ -88,6 +89,7 @@ function PostPage() {
         <div>
             <Navbar />
             <div className="main">
+                <Button onClick={() => navigate('/')} style={{color: "#d97300"}}><ArrowBackIosNewIcon /> Back to Home</Button>
                 <div className="postpage">
                     <PostedBy author={post.author} created_at={post.created_at} />
                     <h1>{post.title}</h1>
