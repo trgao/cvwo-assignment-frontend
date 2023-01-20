@@ -1,0 +1,204 @@
+:root {
+    --darkmode: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", sans-serif;
+    width: 100%;
+    background-color: white;
+}
+
+.main {
+    padding: 80px 20vw 50px;
+}
+
+html.dark {
+    filter: invert(1);
+}
+
+h1, h4 {
+    margin: 0;
+}
+
+h4 {
+    margin-top: 8px;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    color: #d97300;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #d97300;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 10px;
+    gap: 15px;
+    font-size: 15px;
+}
+
+.order {
+    margin-top: 10px;
+}
+
+/* navbar styles */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    box-sizing: border-box;
+    top: 0;
+    z-index: 9998;
+    background-color: white;
+    border-bottom: 1px solid lightgray;
+}
+
+#logo {
+    font-size: 25px;
+}
+
+#darkmode {
+    margin-right: 5px;
+}
+
+/* tags styles */
+.tags {
+    padding-top: 10px;
+}
+
+.tags .MuiChip-root {
+    margin-left: 3px;
+    margin-right: 3px;
+    margin-top: 3px;
+}
+
+#populartags p {
+    margin: 0;
+}
+
+/* searched users styles */
+.users {
+    padding-top: 10px;
+}
+
+.users .MuiChip-root {
+    margin-left: 3px;
+    margin-right: 3px;
+    margin-top: 3px;
+}
+
+/* post styles */
+.post, .comment, .postpage {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 20px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+}
+
+.post {
+    cursor: pointer;
+}
+
+.post:hover {
+    border: 1px solid gray;
+}
+
+.postpage {
+    border: 1px solid gray;
+}
+
+.cardheader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cardheader a {
+    color: #0051b9;
+}
+
+.cardheader h1 {
+    font-size: 25px;
+}
+
+.cardheader .MuiIconButton-root {
+    width: 30px;
+    height: 30px;
+}
+
+.postedby {
+    font-size: 11px;
+}
+
+.postedby span {
+    color: #d97300;
+}
+
+.text {
+    white-space: pre-line;
+}
+
+.likes, .comments {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    margin-right: 15px;
+    gap: 5px;
+}
+
+.likes .MuiToggleButton-root {
+    height: 40px;
+    width: 40px;
+}
+
+.MuiButton-root {
+    width: fit-content;
+}
+
+/* form styles */
+#login, #signup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#loginform, #signupform {
+    min-width: 300px;
+    width: 25vw;
+}
+
+label.Mui-error, .Mui-error > fieldset, .Mui-error + p, .MuiAlert-root {
+    filter: invert(var(--darkmode));
+}
+
+.formbuttons .MuiButton-root {
+    margin-right: 5px;
+}
+
+#error .main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+}
