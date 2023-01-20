@@ -38,7 +38,6 @@ function PostPage() {
     useEffect(() => {
         axios.get(url)
             .then(response => {
-                console.log(response);
                 setPost(response.data);
                 setTags(response.data.tags);
                 setLiked(response.data.liked);
@@ -76,11 +75,9 @@ function PostPage() {
             if (post !== {} && loggedin) {
                 if (liked) {
                     axios.post(likeurl)
-                        .then(response => console.log(response))
                         .catch(error => console.log(error));
                 } else {
                     axios.delete(likeurl)
-                        .then(response => console.log(response))
                         .catch(error => console.log(error));
                 }
             }

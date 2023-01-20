@@ -26,7 +26,6 @@ function User() {
             setURL('https://nusgossip-api.onrender.com/api/v1/posts?author=' + urlparam.username);
             axios.get('https://nusgossip-api.onrender.com/api/v1/users/' + urlparam.username)
                 .then(response => {
-                    console.log(response);
                     if (response.data !== null) {
                         setName(urlparam.username);
                     }

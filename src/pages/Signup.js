@@ -32,7 +32,6 @@ function Signup() {
 
         axios.post(url, user)
             .then(response => {
-                console.log(response);
                 localStorage.setItem('token', response.headers.authorization.split(' ')[1]);
                 localStorage.setItem('user_id', response.data.user.id)
                 localStorage.setItem('username', response.data.user.username);

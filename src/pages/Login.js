@@ -20,14 +20,12 @@ function Login() {
     } = useForm();
 
     const onSubmit = (data) => {
-        console.log(data);
         const user = {
             user: data
         };
 
         axios.post(url, user)
             .then(response => {
-                console.log(response);
                 if (response.headers.authorization) {
                     localStorage.setItem('token', response.headers.authorization.split(' ')[1]);
                     localStorage.setItem('user_id', response.data.status.user.id)

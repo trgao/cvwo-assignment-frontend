@@ -1,10 +1,10 @@
 import { Component } from "react";
 import { getLoggedIn } from "..";
 import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
+import moment from "moment";
 import Delete from "./Delete";
 import CommentForm from "./CommentForm";
-import moment from "moment";
-import { Link } from "react-router-dom";
 
 class Comment extends Component{
     constructor(props) {

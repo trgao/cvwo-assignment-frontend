@@ -61,7 +61,6 @@ const PostForm = ({ url, id }) => {
 
             axios.put(url, post, {headers: {"Authorization": 'Bearer ' + token}})
                 .then(response => {
-                    console.log(response);
                     navigate('/post/' + response.data.id);
                 })
                 .catch(error => console.log(error.response.data));
@@ -76,7 +75,6 @@ const PostForm = ({ url, id }) => {
 
             axios.post(url, post, {headers: {"Authorization": 'Bearer ' + token}})
                 .then(response => {
-                    console.log(response);
                     navigate('/post/' + response.data.id);
                 })
                 .catch(error => console.log(error.response.data));
