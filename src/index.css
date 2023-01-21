@@ -15,12 +15,11 @@ body {
 }
 
 html {
-    background-color: white;
+    background-color: black;
 }
 
 html.dark {
     filter: invert(1);
-    background-color: black;
 }
 
 h1, h4 {
