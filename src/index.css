@@ -14,10 +14,6 @@ body {
     padding: 80px 20vw 50px;
 }
 
-html {
-    background-color: black;
-}
-
 html.dark {
     filter: invert(1);
 }
