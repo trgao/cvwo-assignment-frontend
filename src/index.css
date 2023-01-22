@@ -196,8 +196,9 @@ label.Mui-error, .Mui-error > fieldset, .Mui-error + p, .MuiAlert-root {
     filter: invert(var(--darkmode));
 }
 
-.formbuttons .MuiButton-root {
-    margin-right: 5px;
+.formsubmit {
+    display: flex;
+    gap: 10px;
 }
 
 #error .main {

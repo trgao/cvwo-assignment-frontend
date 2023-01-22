@@ -1,6 +1,7 @@
 import axios from 'axios';
-import { Button, TextField } from "@mui/material";
+import { Button, TextField, CircularProgress } from "@mui/material";
 import { useParams } from "react-router-dom";
+import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 
 const CommentForm = ({ text, id, setEditable }) => {
@@ -17,6 +18,7 @@ const CommentForm = ({ text, id, setEditable }) => {
     const token = localStorage.getItem('token');
     const user_id = localStorage.getItem('user_id');
     const username = localStorage.getItem('username');
+    const [loading, setLoading] = useState(false);
 
     const onSubmit = (value) => {
         const data = {
@@ -25,6 +27,7 @@ const CommentForm = ({ text, id, setEditable }) => {
             user_id: user_id, 
             author: username
         };
+        setLoading(true);
 
         if (text) {
             axios.put(url + '/' + id, data, {headers: {"Authorization": 'Bearer ' + token}})
@@ -64,10 +67,13 @@ const CommentForm = ({ text, id, setEditable }) => {
                     />
                 )}
             />
-            <div className="formbuttons">
+            <div className="formsubmit">
                 <Button type="submit" variant="contained">Post</Button>
                 {setEditable
                 ? <Button variant="outlined" onClick={setEditable}>Cancel</Button>
+                : <></>}
+                {loading 
+                ? <CircularProgress />
                 : <></>}
             </div>       
         </form>

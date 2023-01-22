@@ -1,6 +1,6 @@
 import axios from "axios";
 import Navbar from "../components/Navbar";
-import { TextField, Button, Alert } from "@mui/material";
+import { TextField, Button, Alert, CircularProgress } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { setLoggedIn } from "..";
@@ -12,6 +12,8 @@ function Signup() {
     const url = 'https://nusgossip-api.onrender.com/signup';
     const [alert, setAlert] = useState(false);
     const [alerttext, setAlertText] = useState('');
+    const [loading, setLoading] = useState(false);
+
     const { 
         register, 
         handleSubmit, 
@@ -21,6 +23,7 @@ function Signup() {
 
     const onSubmit = (data) => {
         const { email, username, password } = data;
+        setLoading(true);
 
         const user = {
             user: {
@@ -112,7 +115,12 @@ function Signup() {
                             validate: password => password === getValues("password") || "Password is not the same"
                         })}
                     />
-                    <Button type="submit" variant="contained">Confirm</Button>
+                    <div className="formsubmit">
+                        <Button type="submit" variant="contained">Confirm</Button>
+                        {loading 
+                        ? <CircularProgress />
+                        : <></>}
+                    </div>
                 </form>
             </div>
         </div>

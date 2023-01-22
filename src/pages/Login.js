@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Navbar from "../components/Navbar";
-import { TextField, Button, Alert } from "@mui/material";
+import { TextField, Button, Alert, CircularProgress } from "@mui/material";
 import { useState } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import { setLoggedIn } from "..";
@@ -12,6 +12,7 @@ function Login() {
     const { state } = useLocation();
     const { from } = state.from.pathname === '/signup' ? { from: '/' } : state;
     const [alert, setAlert] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const { 
         register, 
@@ -23,6 +24,7 @@ function Login() {
         const user = {
             user: data
         };
+        setLoading(true);
 
         axios.post(url, user)
             .then(response => {
@@ -70,7 +72,12 @@ function Login() {
                         {...register("password", {required: true})}
                     />
                     <p>Don't have an account? <Link to='/signup' style={{textDecoration: 'underline', color: 'blue'}}>Sign Up</Link></p>
-                    <Button type="submit" variant="contained">Log In</Button>
+                    <div className="formsubmit">
+                        <Button type="submit" variant="contained">Confirm</Button>
+                        {loading 
+                        ? <CircularProgress />
+                        : <></>}
+                    </div>
                 </form>
             </div>
         </div>

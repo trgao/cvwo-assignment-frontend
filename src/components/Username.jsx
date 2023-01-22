@@ -1,4 +1,4 @@
-import { TextField, Button, Alert } from "@mui/material";
+import { TextField, Button, Alert, CircularProgress } from "@mui/material";
 import axios from "axios";
 import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
@@ -8,6 +8,7 @@ const Username = ({ setEdit }) => {
     const username = localStorage.getItem('username');
     const url = 'https://nusgossip-api.onrender.com/api/v1/users/' + username;
     const [alert, setAlert] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const {
         handleSubmit, 
@@ -18,6 +19,7 @@ const Username = ({ setEdit }) => {
     });
 
     const onSubmit = (data) => {
+        setLoading(true);
         axios.put(url, data, {headers: {"Authorization": 'Bearer ' + token}})
             .then(response => {
                 localStorage.setItem('username', data.username);
@@ -56,9 +58,12 @@ const Username = ({ setEdit }) => {
                     />
                 )}
             />
-            <div className="formbuttons">
+            <div className="formsubmit">
                 <Button type="submit" variant="contained">Confirm</Button>
                 <Button variant="outlined" onClick={() => setEdit(false)}>Cancel</Button>
+                {loading 
+                ? <CircularProgress />
+                : <></>}
             </div>
         </form>
     )

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Button, TextField, Autocomplete, Chip } from "@mui/material";
+import { Button, TextField, Autocomplete, Chip, CircularProgress } from "@mui/material";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
@@ -26,6 +26,7 @@ const PostForm = ({ url, id }) => {
     const [tags, setTags] = useState([]);
     const [info, setInfo] = useState({});
     const [options, setOptions] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         axios.get('https://nusgossip-api.onrender.com/api/v1/tags')
@@ -50,6 +51,7 @@ const PostForm = ({ url, id }) => {
     }, [reset]);
 
     const onSubmit = (data) => {
+        setLoading(true);
         if (id) {
             const post = {
                 title: data.title.trim(), 
@@ -144,9 +146,12 @@ const PostForm = ({ url, id }) => {
                     />
                 )}
             />
-            <div className="formbuttons">
+            <div className="formsubmit">
                 <Button type="submit" variant="contained">Post</Button>
                 <Button variant="outlined" onClick={handleCancel}>Cancel</Button>
+                {loading 
+                ? <CircularProgress />
+                : <></>}
             </div>
         </form>
     );
