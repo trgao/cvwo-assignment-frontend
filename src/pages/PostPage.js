@@ -50,7 +50,7 @@ function PostPage() {
             })
             .catch(error => {
                 console.log(error);
-                setPost({title: 'No post found'});
+                navigate('/nopostfound');
             });
     }, []);
 
