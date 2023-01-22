@@ -36,6 +36,7 @@ function Login() {
                     navigate(from);
                 } else {
                     setAlert(true);
+                    setLoading(false);
                 }
             })
             .catch(error => console.log(error));

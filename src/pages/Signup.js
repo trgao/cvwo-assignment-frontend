@@ -46,6 +46,7 @@ function Signup() {
                 if (error.response.status === 422) {
                     setAlert(true);
                     setAlertText(error.response.data.status.message + '.');
+                    setLoading(false);
                 }
             });
     };
