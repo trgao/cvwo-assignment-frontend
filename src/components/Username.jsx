@@ -1,5 +1,6 @@
 import { TextField, Button, Alert, CircularProgress } from "@mui/material";
 import axios from "axios";
+import { handleSpace } from "..";
 import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 
@@ -30,12 +31,6 @@ const Username = ({ setEdit }) => {
                 setAlert(true);
             });
     };
-
-    const handleSpace = (e) => {
-        if (e.key === ' ') {
-            e.preventDefault();
-        }
-    }
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>

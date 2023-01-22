@@ -6,6 +6,15 @@ import { useForm, Controller } from "react-hook-form";
 
 const PostForm = ({ url, id }) => {
     const navigate = useNavigate();
+
+    const token = localStorage.getItem('token');
+    const user_id = localStorage.getItem('user_id');
+    const username = localStorage.getItem('username');
+    const [tags, setTags] = useState([]);
+    const [info, setInfo] = useState({});
+    const [options, setOptions] = useState([]);
+    const [loading, setLoading] = useState(false);
+
     const {
         handleSubmit, 
         control, 
@@ -19,20 +28,13 @@ const PostForm = ({ url, id }) => {
         }
     });
 
-    const token = localStorage.getItem('token');
-    const user_id = localStorage.getItem('user_id');
-    const username = localStorage.getItem('username');
-
-    const [tags, setTags] = useState([]);
-    const [info, setInfo] = useState({});
-    const [options, setOptions] = useState([]);
-    const [loading, setLoading] = useState(false);
-
     useEffect(() => {
+        //getting popular tags to set as options for dropdown menu
         axios.get('https://nusgossip-api.onrender.com/api/v1/tags')
             .then(response => setOptions(response.data.map(tag => tag.name)))
             .catch(error => console.log(error));
 
+        //checks if user is editing thread or posting new thread
         if (id) {
             axios.get(url)
                 .then(response => {

@@ -12,11 +12,13 @@ const MoreActions = ({ post_user_id, id, url, setOpen }) => {
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
 
+    //opens menu
     const handleClick = (e) => {
         e.stopPropagation();
         setAnchorEl(e.currentTarget);
     };
     
+    //closes menu
     const handleClose = (e) => {
         e.stopPropagation();
         setAnchorEl(null);

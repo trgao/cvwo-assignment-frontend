@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const PostedBy = ({ author, created_at, likes_count, comments_count, icon }) => {
     const navigate = useNavigate();
+    
     const handleClick = (e) => {
         e.stopPropagation();
         navigate('/user/' + author);

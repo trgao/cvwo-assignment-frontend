@@ -7,8 +7,8 @@ import PostsList from '../components/PostsList';
 
 function Home() {
     const [url, setURL] = useState('https://nusgossip-api.onrender.com/api/v1/posts?');
-    const baseurl = url;
     const [open, setOpen] = useState(false);
+    const baseurl = url;
 
     return (
         <div>

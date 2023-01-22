@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import { TextField, Button, Alert, CircularProgress } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { setLoggedIn } from "..";
+import { setLoggedIn, handleSpace } from "..";
 import { useForm } from "react-hook-form";
 import { isEmail, isAlphanumeric } from "validator";
 
@@ -50,12 +50,6 @@ function Signup() {
                 }
             });
     };
-
-    const handleSpace = (e) => {
-        if (e.key === ' ') {
-            e.preventDefault();
-        }
-    }
 
     return (
         <div>

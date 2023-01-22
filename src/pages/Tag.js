@@ -8,9 +8,9 @@ import Order from "../components/Order";
 function Tag() {
     const urlparam = useParams();
     const name = urlparam.name.split('_').join(' ')
+    const [open, setOpen] = useState(false);
     const [url, setURL] = useState('https://nusgossip-api.onrender.com/api/v1/tags/' + name + '?');
     const baseurl = url;
-    const [open, setOpen] = useState(false);
 
     useEffect(() => {
         const name = urlparam.name.split('_').join(' ');

@@ -5,6 +5,13 @@ import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 
 const CommentForm = ({ text, id, setEditable }) => {
+    const urlparam = useParams();
+    const url = 'https://nusgossip-api.onrender.com/api/v1/comments';
+    const token = localStorage.getItem('token');
+    const user_id = localStorage.getItem('user_id');
+    const username = localStorage.getItem('username');
+    const [loading, setLoading] = useState(false);
+
     const {
         handleSubmit, 
         control, 
@@ -12,13 +19,6 @@ const CommentForm = ({ text, id, setEditable }) => {
     } = useForm({
         defaultValues: {comment: text ? text : ""}
     });
-
-    const urlparam = useParams();
-    const url = 'https://nusgossip-api.onrender.com/api/v1/comments';
-    const token = localStorage.getItem('token');
-    const user_id = localStorage.getItem('user_id');
-    const username = localStorage.getItem('username');
-    const [loading, setLoading] = useState(false);
 
     const onSubmit = (value) => {
         const data = {
@@ -29,17 +29,16 @@ const CommentForm = ({ text, id, setEditable }) => {
         };
         setLoading(true);
 
+        //checks if user is editing a comment or posting a new comment
         if (text) {
             axios.put(url + '/' + id, data, {headers: {"Authorization": 'Bearer ' + token}})
             .then(response => {
-                console.log(response);
                 window.location.reload(false);
             })
             .catch(error => console.log(error.response.data));
         } else {
             axios.post(url, data, {headers: {"Authorization": 'Bearer ' + token}})
             .then(response => {
-                console.log(response);
                 window.location.reload(false);
             })
             .catch(error => console.log(error.response.data));

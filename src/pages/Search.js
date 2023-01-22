@@ -10,13 +10,14 @@ import Users from "../components/Users";
 
 function Search() {
     const urlparam = useSearchParams()[0];
+
+    const [open, setOpen] = useState(false);
+    const [tags, setTags] = useState([]);
+    const [users, setUsers] = useState([]);
     const [url, setURL] = useState('https://nusgossip-api.onrender.com/api/v1/posts?q=' + urlparam.get('q'));
     const baseurl = url;
     const tagurl = 'https://nusgossip-api.onrender.com/api/v1/tags?q=' + urlparam.get('q');
     const userurl = 'https://nusgossip-api.onrender.com/api/v1/users?q=' + urlparam.get('q');
-    const [open, setOpen] = useState(false);
-    const [tags, setTags] = useState([]);
-    const [users, setUsers] = useState([]);
 
     useEffect(() => {
         setURL('https://nusgossip-api.onrender.com/api/v1/posts?q=' + urlparam.get('q'));

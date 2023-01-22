@@ -13,13 +13,13 @@ function User() {
     const username = localStorage.getItem('username');
     const urlparam = useParams();
     const others = urlparam.username ? true : false;
-    const [url, setURL] = useState(others 
-                                   ? 'https://nusgossip-api.onrender.com/api/v1/posts?author=' + urlparam.username 
-                                   : 'https://nusgossip-api.onrender.com/api/v1/posts?author=' + username);
-    const baseurl = url;
     const [name, setName] = useState('');
     const [open, setOpen] = useState(false);
     const [edit, setEdit] = useState(false);
+    const [url, setURL] = useState(others 
+        ? 'https://nusgossip-api.onrender.com/api/v1/posts?author=' + urlparam.username 
+        : 'https://nusgossip-api.onrender.com/api/v1/posts?author=' + username);
+    const baseurl = url;
 
     useEffect(() => {
         if (others) {

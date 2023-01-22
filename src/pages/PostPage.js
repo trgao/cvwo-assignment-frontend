@@ -7,7 +7,7 @@ import PostedBy from '../components/PostedBy';
 import Share from '../components/Share';
 import { getLoggedIn } from '..';
 import { useState, useEffect } from 'react';
-import { useLocation, useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Button, ToggleButton } from '@mui/material';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
@@ -16,10 +16,8 @@ import Copied from '../components/Copied';
 import Tags from '../components/Tags';
 
 function PostPage() {
-    const location = useLocation();
     const navigate = useNavigate();
     const urlparam = useParams();
-    const user_id = localStorage.getItem('user_id');
 
     const [loaded, setLoaded] = useState(false);
     const [post, setPost] = useState({});
@@ -31,10 +29,11 @@ function PostPage() {
     const [open, setOpen] = useState(false);
     const loggedin = getLoggedIn();
 
+    const user_id = localStorage.getItem('user_id');
     const url = loggedin
                 ? 'https://nusgossip-api.onrender.com/api/v1/posts/' + urlparam.id + '?user_id=' + user_id
                 : 'https://nusgossip-api.onrender.com/api/v1/posts/' + urlparam.id;
-    const likeurl = 'https://nusgossip-api.onrender.com/api/v1/likes?post_id=' + urlparam.id + '&user_id=' + user_id
+    const likeurl = 'https://nusgossip-api.onrender.com/api/v1/likes?post_id=' + urlparam.id + '&user_id=' + user_id;
 
     useEffect(() => {
         axios.get(url)
@@ -54,14 +53,12 @@ function PostPage() {
             });
     }, []);
 
+    //shows or hides comment form
     const handleClick = () => {
-        if (loggedin) {
-            setCommentForm(bool => !bool);
-        } else {
-            navigate('/login', { state: {from: location}, replace: true });
-        }
+        setCommentForm(bool => !bool);
     };
 
+    //handles like count
     const handleLike = (e, value) => {
         if (liked) {
             setLikes(likes => likes - 1);
@@ -71,6 +68,7 @@ function PostPage() {
         setLiked(!liked);
     };
 
+    //updates like whenever toggle button is clicked
     useEffect(() => {
         if (loaded) {
             if (post !== {} && loggedin) {

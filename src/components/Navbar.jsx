@@ -15,25 +15,28 @@ const Navbar = () => {
     const location = useLocation();
     const loggedin = getLoggedIn();
     const navigate = useNavigate();
+
+    const tagurl = 'https://nusgossip-api.onrender.com/api/v1/tags?q=';
+    const userurl = 'https://nusgossip-api.onrender.com/api/v1/users?q=';
     const [search, setSearch] = useState('');
     const [refresh, setRefresh] = useState(false);
     const [tags, setTags] = useState([]);
     const [users, setUsers] = useState([]);
     const [darkmode, setDarkMode] = useState(JSON.parse(localStorage.getItem('darkmode')));
-    const tagurl = 'https://nusgossip-api.onrender.com/api/v1/tags?q=';
-    const userurl = 'https://nusgossip-api.onrender.com/api/v1/users?q=';
-
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
 
+    //opens dashboard menu
     const handleClick = (e) => {
         setAnchorEl(e.currentTarget);
     };
 
+    //closes dashboard menu
     const handleClose = () => {
         setAnchorEl(null);
     };
 
+    //handles search bar clear all input
     const handleInputChange = (e, value, reason) => {
         if (e.type === 'click') {
             if (reason === 'clear') {
@@ -44,6 +47,7 @@ const Navbar = () => {
         }
     }
 
+    //handles search bar inputs
     const handleChange = (e, value) => {
         if (e.type === 'click' && value !== null){
             if (value.name) {
@@ -66,6 +70,7 @@ const Navbar = () => {
         }
     }
 
+    //handles dark mode toggle
     const handleDarkMode = () => {
         setDarkMode(bool => !bool);
     };
@@ -83,6 +88,7 @@ const Navbar = () => {
             .catch(error => console.log(error));
     }, [search]);
 
+    //applies light mode/dark mode css style
     useEffect(() => {
         localStorage.setItem('darkmode', darkmode);
         if (darkmode) {

@@ -7,14 +7,17 @@ const Order = ({ setURL, baseurl }) => {
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
 
+    //opens menu
     const handleClick = (e) => {
         setAnchorEl(e.currentTarget);
     };
 
+    //closes menu
     const handleClose = () => {
         setAnchorEl(null);
     };
 
+    //changes order of posts by changing api call
     const changeOrder = (e) => {
         const order = e.target.innerText;
         setAnchorEl(null);

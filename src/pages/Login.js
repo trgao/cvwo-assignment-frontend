@@ -3,14 +3,15 @@ import Navbar from "../components/Navbar";
 import { TextField, Button, Alert, CircularProgress } from "@mui/material";
 import { useState } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
-import { setLoggedIn } from "..";
+import { setLoggedIn, handleSpace } from "..";
 import { useForm } from "react-hook-form";
 
 function Login() {
-    const url = 'https://nusgossip-api.onrender.com/login';
     const navigate = useNavigate();
+
     const { state } = useLocation();
     const { from } = state.from.pathname === '/signup' ? { from: '/' } : state;
+    const url = 'https://nusgossip-api.onrender.com/login';
     const [alert, setAlert] = useState(false);
     const [loading, setLoading] = useState(false);
 
@@ -26,6 +27,8 @@ function Login() {
         };
         setLoading(true);
 
+        //if token is sent back in response, user is logged in, 
+        //if not user entered wrong username or password
         axios.post(url, user)
             .then(response => {
                 if (response.headers.authorization) {
@@ -41,12 +44,6 @@ function Login() {
             })
             .catch(error => console.log(error));
     };
-
-    const handleSpace = (e) => {
-        if (e.key === ' ') {
-            e.preventDefault();
-        }
-    }
 
     return (
         <div>

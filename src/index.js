@@ -13,6 +13,13 @@ export function setLoggedIn(bool) {
     localStorage.setItem('logged', bool);
 }
 
+export const handleSpace = (e) => {
+    if (e.key === ' ') {
+        e.preventDefault();
+    }
+}
+
+//sets localstorage items to '' for first time visitors
 if (token === null) {
     localStorage.setItem('token', '');
     setLoggedIn(false);
@@ -27,6 +34,8 @@ if (localStorage.getItem('user_id') === null) {
 if (localStorage.getItem('username') === null) {
     localStorage.setItem('username', '');
 }
+
+//changes website theme to user system light or dark mode preference
 if (localStorage.getItem('darkmode') === null) {
     localStorage.setItem('darkmode', window.matchMedia('(prefers-color-scheme: dark)').matches);
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) {

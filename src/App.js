@@ -9,7 +9,7 @@ import New from './pages/New';
 import Edit from './pages/Edit';
 import Error from './pages/Error';
 import { Route, Routes } from 'react-router-dom';
-import { Authorization, UnAuthorization } from './components/Authorization';
+import { Authorization, UnAuthorization } from './components/AuthorizationCheckers';
 
 function App() {
     return (

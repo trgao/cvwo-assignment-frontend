@@ -24,6 +24,8 @@ class Comment extends Component{
         const loggedin = getLoggedIn();
         const url = 'https://nusgossip-api.onrender.com/api/v1/comments/' + this.state.id;
 
+        //changes whether comment shows the content or shows
+        //the comment form to allow it to be edited
         const setEditable = () => {
             this.setState(() => {
                 return {editable: !this.state.editable};

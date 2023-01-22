@@ -15,7 +15,6 @@ const Delete = ({ url, sx, menu }) => {
 
         axios.delete(url, {headers:{"Authorization": 'Bearer ' + token}})
             .then(response => {
-                console.log(response);
                 window.location.reload();
             })
             .catch(error => console.log(error));
