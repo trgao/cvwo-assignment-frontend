@@ -14,7 +14,7 @@ body {
     padding: 80px 20vw 50px;
 }
 
-.main {
+#root {
     min-height: 100vh;
 }
 
