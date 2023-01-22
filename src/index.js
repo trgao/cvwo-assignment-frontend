@@ -2,15 +2,23 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import { BrowserRouter } from "react-router-dom";
+import moment from 'moment';
+import axios from 'axios';
 import './index.css';
 
 const token = localStorage.getItem('token');
+const loggedin_time = localStorage.getItem('loggedin_time');
+const url = 'https://nusgossip-api.onrender.com/logout';
 
 export function getLoggedIn() {
     return JSON.parse(localStorage.getItem('logged'));
 }
 export function setLoggedIn(bool) {
     localStorage.setItem('logged', bool);
+}
+
+export function setLoggedInTime(time) {
+    localStorage.setItem('loggedin_time', time);
 }
 
 export const handleSpace = (e) => {
@@ -33,6 +41,23 @@ if (localStorage.getItem('user_id') === null) {
 }
 if (localStorage.getItem('username') === null) {
     localStorage.setItem('username', '');
+}
+
+if (loggedin_time === null) {
+    localStorage.setItem('loggedin_time', '');
+} else if (loggedin_time !== '') {
+    //logs out user after 2 weeks due to jwt expiring in 2 weeks
+    if (moment().diff(moment(loggedin_time), 'weeks', true) >= 2) {
+        axios.delete(url, {headers:{"Authorization": 'Bearer ' + token}})
+            .then(response => {
+                setLoggedIn(false);
+                setLoggedInTime('');
+                localStorage.setItem('token', '');
+                localStorage.setItem('user_id', '');
+                localStorage.setItem('username', '');
+            })
+            .catch(error => console.log(error));
+    }
 }
 
 //changes website theme to user system light or dark mode preference

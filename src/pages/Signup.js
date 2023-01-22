@@ -3,9 +3,10 @@ import Navbar from "../components/Navbar";
 import { TextField, Button, Alert, CircularProgress } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { setLoggedIn, handleSpace } from "..";
+import { setLoggedIn, handleSpace, setLoggedInTime } from "..";
 import { useForm } from "react-hook-form";
 import { isEmail, isAlphanumeric } from "validator";
+import moment from "moment";
 
 function Signup() {
     const navigate = useNavigate();
@@ -39,6 +40,7 @@ function Signup() {
                 localStorage.setItem('user_id', response.data.user.id)
                 localStorage.setItem('username', response.data.user.username);
                 setLoggedIn(true);
+                setLoggedInTime(moment().toISOString());
                 navigate('/');
             })
             .catch(error => {

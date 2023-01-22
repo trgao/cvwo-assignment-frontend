@@ -1,5 +1,5 @@
 import axios from "axios";
-import { setLoggedIn } from "..";
+import { setLoggedIn, setLoggedInTime } from "..";
 import { Link, useNavigate } from "react-router-dom";
 import { MenuItem } from "@mui/material";
 
@@ -12,6 +12,7 @@ const Logout = ({ handleClose }) => {
         axios.delete(url, {headers:{"Authorization": 'Bearer ' + token}})
             .then(response => {
                 setLoggedIn(false);
+                setLoggedInTime('');
                 localStorage.setItem('token', '');
                 localStorage.setItem('user_id', '');
                 localStorage.setItem('username', '');
